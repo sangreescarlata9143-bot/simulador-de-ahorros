@@ -7,15 +7,56 @@ while opcion !="5":
     print("4. Borrar datos")
     print("5. Salir")
     opcion = input("Seleccione una opción:")
-    if opcion == "1":
-        print("Elegiste incluir datos")
-    elif opcion == "2":
-        print("Elegiste consultar simulación")
-    elif opcion == "3":
-        print ("Elegiste modificar datos")
-    elif opcion == "4":
-        print("Elegiste borrar datos")
-    elif opcion == "5":
-        print("Saliendo del programa")
-    else:
-        print("Opción inválida")      
+  if opcion == "1":
+     nombre = input("¿Motivo del ahorro? ")
+     monto = float(input("¿Cuánto dinero tienes ahorrado? $"))
+     if monto <= 0:  #Validación de monto positivo
+         print("El monto debe ser mayor a 0.")
+     else:
+         ahorros.append(f"{nombre}: ${monto:.2f}")  #f-string
+         print("Ahorro registrado exitosamente.")
+
+ elif opcion == "2":
+     print("Elegiste iniiar simulación")
+     if len(ahorros) == 0:
+         print("No tienes ahorros registrados.")
+     else:
+         print("\nTus ahorros:")
+         for i, item in enumerate(ahorros, 1):  #enumerate en vez de range(len())
+             print(f"  {i}. {item}")
+
+ elif opcion == "3":  # Opción 3 = Modificar
+     print("Elegiste modificar datos")
+     if len(ahorros) == 0:
+         print("No hay datos para modificar.")
+     else:
+         for i, item in enumerate(ahorros, 1):
+             print(f"  {i}. {item}")
+         numero = int(input("¿Cuál quieres modificar? "))
+         if 1 <= numero <= len(ahorros):
+             nuevo_nombre = input("Nuevo motivo: ")
+             nuevo_monto = float(input("Nuevo monto: $"))
+             ahorros[numero - 1] = f"{nuevo_nombre}: ${nuevo_monto:.2f}"
+             print("Modificado exitosamente.")
+         else:
+             print("Número inválido.")
+
+ elif opcion == "4":  # Opción 4 = Borrar
+     print("Elegiste borrar datos")
+     if len(ahorros) == 0:
+         print("No hay datos para borrar.")
+     else:
+         for i, item in enumerate(ahorros, 1):
+             print(f"  {i}. {item}")
+         numero = int(input("¿Cuál quieres borrar? "))
+         if 1 <= numero <= len(ahorros):
+             ahorros.pop(numero - 1)
+             print("Borrado exitosamente.")
+         else:
+             print("Número inválido.")
+
+ elif opcion == "5":
+     print("Saliendo del programa")
+
+ else:
+     print("Opción inválida. Por favor elija un numeri entre 1 y 5.")     
